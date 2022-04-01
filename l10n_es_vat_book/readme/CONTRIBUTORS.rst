@@ -7,5 +7,6 @@
   * Carlos Dauden
   * Ernesto Tejeda
 * Omar Castiñeira <omar@comunitea.com>
-* Luis Lafaurie <ldlafaurie@gmail.com>
 * Fernando La Chica <fernandolachica@gmail.com>
+* Victor Garcia <victor.garcia@kayuulab.com>
+* Luis Lafaurie <ldlafaurie@gmail.com>
