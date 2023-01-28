@@ -1,9 +1,9 @@
 /** @odoo-module **/
-import {patch} from "web.utils";
-import {_lt} from "@web/core/l10n/translation";
-import {session} from "@web/session";
 import {FIELD_OPERATORS, FIELD_TYPES} from "web.searchUtils";
 import CustomFilterItem from "web.CustomFilterItem";
+import {_lt} from "@web/core/l10n/translation";
+import {patch} from "web.utils";
+import {session} from "@web/session";
 
 patch(
     CustomFilterItem.prototype,
@@ -48,8 +48,8 @@ patch(
                 const operator = this.OPERATORS[FIELD_TYPES[type]][condition.operator];
                 if (operator.date_range) {
                     const default_range = this.date_ranges[operator.date_range_type][0];
-                    const d_start = moment(`${default_range.date_start} 00:00:00Z`);
-                    const d_end = moment(`${default_range.date_end} 23:59:59Z`);
+                    const d_start = moment(`${default_range.date_start} 00:00:00`);
+                    const d_end = moment(`${default_range.date_end} 23:59:59`);
                     condition.value = [d_start, d_end];
                 } else {
                     super._setDefaultValue(...arguments);
@@ -60,11 +60,12 @@ patch(
                 const type = this.fields[condition.field].type;
                 const operator = this.OPERATORS[FIELD_TYPES[type]][condition.operator];
                 if (operator.date_range) {
+                    /* eslint-disable radix */
                     const eid = parseInt(ev.target.value);
                     const ranges = this.date_ranges[operator.date_range_type];
-                    const range = ranges.find((x) => x.id == eid);
-                    const d_start = moment(`${range.date_start} 00:00:00Z`);
-                    const d_end = moment(`${range.date_end} 23:59:59Z`);
+                    const range = ranges.find((x) => x.id === eid);
+                    const d_start = moment(`${range.date_start} 00:00:00`);
+                    const d_end = moment(`${range.date_end} 23:59:59`);
                     condition.value = [d_start, d_end];
                 } else {
                     super._onValueInputChange(...arguments);
